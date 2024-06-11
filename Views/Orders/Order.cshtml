@@ -1,0 +1,105 @@
+﻿@model Windy_City_Pizza.Models.Order
+
+
+@{
+    ViewData["Title"] = "Order your fresh Pizza🍕";
+}
+
+<h1>Create Order</h1>
+
+
+<div class="d-flex flex-row justify-content-around">
+    <div class="border">
+        <h2>Add Pizza</h2>
+        <form asp-action="Create">
+
+            <!--Pizza Name-->
+            <div class="form-group">
+                <label asp-for="Pizza" class="control-label">Pizza</label>
+                <select asp-for="Pizza" class="form-control" id="pizzaDropdown">
+                    @if (ViewData["PizzaNames"] is List<string> pizzaNames)
+                    {
+                        foreach (var pizzaName in pizzaNames)
+                        {
+                            <option value="@pizzaName">@pizzaName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option>No pizzas available</option>
+                    }
+                </select>
+                <span asp-validation-for="Pizza" class="text-danger"></span>
+            </div>
+
+
+            <!--Pizza Size-->
+            <p>Choose Pizza Size: </p>
+            <div class="form-check">
+                <input asp-for="PizzaSize" class="form-check-input" type="radio" name="PizzaSize" value="S"
+                       checked>
+                <label class="form-check-label" asp-for="PizzaSize">
+                    Small
+                </label>
+            </div>
+            <div class="form-check">
+                <input asp-for="PizzaSize" class="form-check-input" type="radio" name="PizzaSize" value="M">
+                <label class="form-check-label" asp-for="PizzaSize">
+                    Meduim
+                </label>
+            </div>
+            <div class="form-check">
+                <input asp-for="PizzaSize" class="form-check-input" type="radio" name="PizzaSize" value="L">
+                <label class="form-check-label" asp-for="PizzaSize">
+                    Large
+                </label>
+            </div>
+
+            @* Extras *@
+            <p>Choose Extras:</p>
+            @if (ViewData["ExtraNames"] is List<string> extraNames)
+            {
+                foreach (var extraName in extraNames)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="@extraName" asp-for="Extras">
+                        <label class="form-check-label" asp-for="Extras">
+                            @extraName
+                        </label>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No extras available</p>
+            }
+            
+
+            
+
+            <input type="hidden" asp-for="OrderDate" id="todayDate">
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="border">
+        <h2>Order Details</h2>
+
+        <ul>1x Small Haiwan (Cheese)</ul>
+        <ul>1x Large Meaty (Meat)</ul>
+        <p>Total: R150</p>
+        <button type="submit" class="btn btn-success">Create Order</button>
+    </div>
+</div>
+
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var todayDate = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("todayDate").value = todayDate;
+</script>

@@ -1,0 +1,49 @@
+﻿@model Windy_City_Pizza.Models.Pizza
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Pizza</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PizzaName" class="control-label"></label>
+                <input asp-for="PizzaName" class="form-control" />
+                <span asp-validation-for="PizzaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceSmall" class="control-label"></label>
+                <input asp-for="PriceSmall" class="form-control" />
+                <span asp-validation-for="PriceSmall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceMeduim" class="control-label"></label>
+                <input asp-for="PriceMeduim" class="form-control" />
+                <span asp-validation-for="PriceMeduim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceLarge" class="control-label"></label>
+                <input asp-for="PriceLarge" class="form-control" />
+                <span asp-validation-for="PriceLarge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
