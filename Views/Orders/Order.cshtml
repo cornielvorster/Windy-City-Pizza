@@ -2,17 +2,14 @@
 
 
 @{
-    ViewData["Title"] = "Order your fresh Pizza🍕";
+    ViewData["Title"] = "Order🍕";
 }
 
-<h1>Create Order</h1>
-
-
+<h1>@ViewData["Title"]</h1>
 <div class="d-flex flex-row justify-content-around">
     <div class="border">
         <h2>Add Pizza</h2>
-        <form asp-action="Create">
-
+        <form asp-action="SubmitForm">
             <!--Pizza Name-->
             <div class="form-group">
                 <label asp-for="Pizza" class="control-label">Pizza</label>
@@ -42,12 +39,14 @@
                     Small
                 </label>
             </div>
+
             <div class="form-check">
                 <input asp-for="PizzaSize" class="form-check-input" type="radio" name="PizzaSize" value="M">
                 <label class="form-check-label" asp-for="PizzaSize">
                     Meduim
                 </label>
             </div>
+
             <div class="form-check">
                 <input asp-for="PizzaSize" class="form-check-input" type="radio" name="PizzaSize" value="L">
                 <label class="form-check-label" asp-for="PizzaSize">
@@ -80,7 +79,7 @@
             <input type="hidden" asp-for="OrderDate" id="todayDate">
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add to order" class="btn btn-primary" />
             </div>
         </form>
     </div>
